@@ -6,8 +6,8 @@ FROM maven:3.8.4-openjdk-21 AS build
 WORKDIR /app
 
 # Copiar os arquivos do projeto
-COPY projeto/pom.xml /app/
-COPY projeto/src/ /app/src/
+COPY pom.xml /app/
+COPY src/ /app/src/
 
 # Compilar o projeto
 RUN mvn clean package -DskipTests
@@ -17,9 +17,9 @@ FROM openjdk:21-slim
 WORKDIR /app
 
 # Copiar o JAR gerado
-COPY --from=build /app/target/*.jar app.jar
+COPY --from=build /app/target/securing-web-0.0.1-SNAPSHOT.jar app.jar
 
-# Expor a porta
+# Expor a porta da aplicação
 EXPOSE 8684
 
 # Rodar a aplicação
