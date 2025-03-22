@@ -1,6 +1,6 @@
 # Etapa de construção
 # Usar uma imagem Maven compatível com OpenJDK 21
-FROM maven:3.8.4-openjdk-21 AS build
+FROM maven:3.9.6-eclipse-temurin-21 AS build
 
 # Definir o diretório de trabalho
 WORKDIR /app
@@ -13,7 +13,7 @@ COPY src/ /app/src/
 RUN mvn clean package -DskipTests
 
 # Etapa de execução
-FROM openjdk:21-slim
+FROM eclipse-temurin:21-jre
 WORKDIR /app
 
 # Copiar o JAR gerado
