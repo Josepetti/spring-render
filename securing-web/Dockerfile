@@ -10,8 +10,8 @@ RUN apt-get update && apt-get-install -y maven && apt-get clean && rm -rf/var/li
 WORKDIR /app
 
 #Copiar o pom.xml par o container
-COPY pom.xml .
-COPY scr ./scr
+COPY securing-web/pom.xml /app/
+COPY securing-web/scr/ /app/scr/ 
 
 #Executar o Maven para compilar projeto e gerar o JAR File
 RUN mvn clean package - DskipTests
